@@ -9,8 +9,10 @@ import { routing }       from './app.routing';
 import { HeroesComponent }      from './components/heroes/heroes.component';
 import { DashboardComponent }   from './components/dashboard/dashboard.component';
 import { HeroDetailComponent }  from './components/heroDetail/hero-detail.component';
+import { UploadComponent }  from './components/upload/upload.component';
 
 import { HeroService }  from './services/hero.service';
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ import { HeroService }  from './services/hero.service';
     AppComponent,
     HeroesComponent,
     DashboardComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    UploadComponent,
+    FileSelectDirective
   ],
   providers: [
     HeroService

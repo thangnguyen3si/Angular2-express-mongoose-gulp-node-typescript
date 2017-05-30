@@ -8,6 +8,7 @@ import path = require('path');
 var port: number = process.env.PORT || 3000;
 var env:string = process.env.NODE_ENV || 'developement';
 
+
 var app = express();
 
 app.set('port', port);
@@ -54,5 +55,13 @@ app.use(function(err: any, req: express.Request, res: express.Response, next: ex
         message: err.message
     });
 });
+
+app.use(function(req, res, next) { //allow cross origin requests
+        res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
+        res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.header("Access-Control-Allow-Credentials", "true");
+        next();
+    });
 
 export { app }

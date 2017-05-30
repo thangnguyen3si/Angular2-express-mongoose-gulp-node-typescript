@@ -86,6 +86,11 @@ gulp.task("serverResources", () => {
         .pipe(gulp.dest("dist/server/bin"));
 });
 
+gulp.task("serverImage", () => {
+    return gulp.src(["server/src/uploads/**"])
+        .pipe(gulp.dest("dist/server/uploads"));
+});
+
 /**
  * Copy all required libraries into build directory.
  */
@@ -145,7 +150,7 @@ gulp.task('start', function () {
  */
 
 gulp.task("build", function (callback) {
-    runSequence('clean', 'build:server', 'build:client', 'clientResources', 'serverResources', 'libs', 'css', callback);
+    runSequence('clean', 'build:server', 'build:client', 'clientResources', 'serverImage', 'serverResources', 'libs', 'css', callback);
 });
 
 /**
@@ -175,9 +180,9 @@ gulp.task('watch', function () {
  */
 
 gulp.task("build", function (callback) {
-    runSequence('clean', 'build:server', 'build:client', 'clientResources', 'serverResources', 'libs', 'css', callback);
+    runSequence('clean', 'build:server', 'build:client', 'clientResources', 'serverImage', 'serverResources', 'libs', 'css', callback);
 });
 
 gulp.task('default', function () {
-    runSequence('build:server', 'build:client', 'clientResources', 'serverResources', 'libs', 'css', 'watch', 'start');
+    runSequence('build:server', 'build:client', 'clientResources', 'serverResources', 'serverImage', 'libs', 'css', 'watch', 'start');
 });
